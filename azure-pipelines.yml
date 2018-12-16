@@ -51,7 +51,7 @@ steps:
     command: publish
     publishWebProjects: false
     arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
-    zipAfterPublish: false
+    zipAfterPublish: true
     modifyOutputPath: false
     
 # Publish the artifacts
