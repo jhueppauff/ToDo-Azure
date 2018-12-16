@@ -2,6 +2,7 @@
 # Build and test ASP.NET Core projects targeting .NET Core.
 # Add steps that run tests, create a NuGet package, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+name: $(MajorVersion).$(MinorVersion).$(Year:yy)$(DayOfYear)$(Rev:.rr)
 
 trigger:
 - master
@@ -11,7 +12,47 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  buildPlatform: 'Any CPU'
+  MajorVersion: '1'
+  MinorVersion: '0'
+  Patch: '0
 
 steps:
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
+# Restore NuGet packages
+- task: DotNetCoreCLI@2
+  displayName: Restore NuGet Packages
+  inputs:
+    projects: '**/*.csproj'
+    command: restore
+    
+# Compile
+- task: DotNetCoreCLI@2
+  displayName: Compile
+  inputs:
+    projects: '**/*.csproj'
+    command: build
+    arguments: '--configuration $(buildConfiguration)'
+    
+# Tests
+- task: DotNetCoreCLI@2
+  displayName: Test
+  inputs:
+    command: test
+    projects: '**/*Tests/*.csproj'
+    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
+    
+- task: DotNetCoreCLI@2
+  displayName: Publish
+  inputs:
+    projects: '**/*.csproj'
+    command: publish
+    publishWebProjects: false
+    arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+    zipAfterPublish: false
+    modifyOutputPath: false
+    
+# Publish the artifacts
+- task: PublishBuildArtifacts@1
+  displayName: Publish Artifacts
+  inputs:
+    pathToPublish: $(Build.ArtifactStagingDirectory)
