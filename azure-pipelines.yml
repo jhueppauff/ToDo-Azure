@@ -25,6 +25,9 @@ steps:
     projects: '**/*.csproj'
     command: restore
     
+- task: richardfennellBM.BM-VSTS-Versioning-Task.Version-DotNetCoreAssemblies-Task.VersionDotNetCoreAssemblies@2
+  displayName: 'Version .NET Core Assemblies'
+
 # Compile
 - task: DotNetCoreCLI@2
   displayName: Compile
