@@ -122,7 +122,6 @@
           "properties": {
             "packageUri": "[concat(parameters('_artifactsLocation'), '/', parameters('API WebDeployPackageFolder'), '/', parameters('API WebDeployPackageFileName'), parameters('_artifactsLocationSasToken'))]",
             "dbType": "None",
-            "connectionString": "",
             "setParameters": {
               "IIS Web Application Name": "[variables('apiName')]"
             }
@@ -177,7 +176,6 @@
           "properties": {
             "packageUri": "[concat(parameters('_artifactsLocation'), '/', parameters('FrontEnd WebDeployPackageFolder'), '/', parameters('FrontEnd WebDeployPackageFileName'), parameters('_artifactsLocationSasToken'))]",
             "dbType": "None",
-            "connectionString": "",
             "setParameters": {
               "IIS Web Application Name": "[variables('frontEndName')]"
             }
