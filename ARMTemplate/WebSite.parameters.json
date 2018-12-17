@@ -16,6 +16,9 @@
     },
     "FrontEnd WebDeployPackageFileName": {
       "value": "package.zip"
+    },
+    "ApplicationInsightLocation": {
+      "value": "West Europe"
     }
   }
 }
