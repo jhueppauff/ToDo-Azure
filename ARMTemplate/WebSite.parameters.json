@@ -3,7 +3,19 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "hostingPlanName": {
-      "value": null
+      "value": "todo-asp"
+    },
+    "API WebDeployPackageFolder": {
+      "value": "API"
+    },
+    "API WebDeployPackageFileName": {
+      "value": "package.zip"
+    },
+    "FrontEnd WebDeployPackageFolder": {
+      "value": "Frontend"
+    },
+    "FrontEnd WebDeployPackageFileName": {
+      "value": "package.zip"
     }
   }
 }
