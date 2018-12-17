@@ -266,25 +266,25 @@
     },
     {
       "apiVersion": "2014-04-01",
-      "name": "[concat('ServerErrors ', variables('webSiteName'))]",
+      "name": "[concat('ServerErrors ', variables('apiName'))]",
       "type": "Microsoft.Insights/alertrules",
       "location": "[resourceGroup().location]",
       "dependsOn": [
-        "[resourceId('Microsoft.Web/sites/', variables('webSiteName'))]"
+        "[resourceId('Microsoft.Web/sites/', variables('apiName'))]"
       ],
       "tags": {
-        "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', variables('webSiteName'))]": "Resource",
+        "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', variables('apiName'))]": "Resource",
         "displayName": "ServerErrorsAlertRule"
       },
       "properties": {
-        "name": "[concat('ServerErrors ', variables('webSiteName'))]",
-        "description": "[concat(variables('webSiteName'), ' has some server errors, status code 5xx.')]",
+        "name": "[concat('ServerErrors ', variables('apiName'))]",
+        "description": "[concat(variables('apiName'), ' has some server errors, status code 5xx.')]",
         "isEnabled": false,
         "condition": {
           "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
           "dataSource": {
             "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleMetricDataSource",
-            "resourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/sites/', variables('webSiteName'))]",
+            "resourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/sites/', variables('apiName'))]",
             "metricName": "Http5xx"
           },
           "operator": "GreaterThan",
@@ -300,25 +300,25 @@
     },
     {
       "apiVersion": "2014-04-01",
-      "name": "[concat('ForbiddenRequests ', variables('webSiteName'))]",
+      "name": "[concat('ForbiddenRequests ', variables('apiName'))]",
       "type": "Microsoft.Insights/alertrules",
       "location": "[resourceGroup().location]",
       "dependsOn": [
-        "[resourceId('Microsoft.Web/sites/', variables('webSiteName'))]"
+        "[resourceId('Microsoft.Web/sites/', variables('apiName'))]"
       ],
       "tags": {
-        "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', variables('webSiteName'))]": "Resource",
+        "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', variables('apiName'))]": "Resource",
         "displayName": "ForbiddenRequestsAlertRule"
       },
       "properties": {
-        "name": "[concat('ForbiddenRequests ', variables('webSiteName'))]",
-        "description": "[concat(variables('webSiteName'), ' has some requests that are forbidden, status code 403.')]",
+        "name": "[concat('ForbiddenRequests ', variables('apiName'))]",
+        "description": "[concat(variables('apiName'), ' has some requests that are forbidden, status code 403.')]",
         "isEnabled": false,
         "condition": {
           "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
           "dataSource": {
             "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleMetricDataSource",
-            "resourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/sites/', variables('webSiteName'))]",
+            "resourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/sites/', variables('apiName'))]",
             "metricName": "Http403"
           },
           "operator": "GreaterThan",
@@ -402,18 +402,102 @@
     },
     {
       "apiVersion": "2014-04-01",
-      "name": "[variables('webSiteName')]",
+      "name": "[variables('apiName')]",
       "type": "Microsoft.Insights/components",
       "location": "East US",
       "dependsOn": [
-        "[resourceId('Microsoft.Web/sites/', variables('webSiteName'))]"
+        "[resourceId('Microsoft.Web/sites/', variables('apiName'))]"
       ],
       "tags": {
-        "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', variables('webSiteName'))]": "Resource",
+        "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', variables('apiName'))]": "Resource",
         "displayName": "AppInsightsComponent"
       },
       "properties": {
-        "applicationId": "[variables('webSiteName')]"
+        "applicationId": "[variables('apiName')]"
+      }
+    },
+    {
+      "apiVersion": "2014-04-01",
+      "name": "[concat('ServerErrors ', variables('frontEndName'))]",
+      "type": "Microsoft.Insights/alertrules",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites/', variables('frontEndName'))]"
+      ],
+      "tags": {
+        "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', variables('frontEndName'))]": "Resource",
+        "displayName": "ServerErrorsAlertRule"
+      },
+      "properties": {
+        "name": "[concat('ServerErrors ', variables('frontEndName'))]",
+        "description": "[concat(variables('frontEndName'), ' has some server errors, status code 5xx.')]",
+        "isEnabled": false,
+        "condition": {
+          "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
+          "dataSource": {
+            "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleMetricDataSource",
+            "resourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/sites/', variables('frontEndName'))]",
+            "metricName": "Http5xx"
+          },
+          "operator": "GreaterThan",
+          "threshold": 0.0,
+          "windowSize": "PT5M"
+        },
+        "action": {
+          "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleEmailAction",
+          "sendToServiceOwners": true,
+          "customEmails": []
+        }
+      }
+    },
+    {
+      "apiVersion": "2014-04-01",
+      "name": "[concat('ForbiddenRequests ', variables('frontEndName'))]",
+      "type": "Microsoft.Insights/alertrules",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites/', variables('frontEndName'))]"
+      ],
+      "tags": {
+        "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', variables('frontEndName'))]": "Resource",
+        "displayName": "ForbiddenRequestsAlertRule"
+      },
+      "properties": {
+        "name": "[concat('ForbiddenRequests ', variables('frontEndName'))]",
+        "description": "[concat(variables('frontEndName'), ' has some requests that are forbidden, status code 403.')]",
+        "isEnabled": false,
+        "condition": {
+          "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
+          "dataSource": {
+            "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleMetricDataSource",
+            "resourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/sites/', variables('frontEndName'))]",
+            "metricName": "Http403"
+          },
+          "operator": "GreaterThan",
+          "threshold": 0,
+          "windowSize": "PT5M"
+        },
+        "action": {
+          "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleEmailAction",
+          "sendToServiceOwners": true,
+          "customEmails": []
+        }
+      }
+    },
+    {
+      "apiVersion": "2014-04-01",
+      "name": "[variables('frontEndName')]",
+      "type": "Microsoft.Insights/components",
+      "location": "East US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites/', variables('frontEndName'))]"
+      ],
+      "tags": {
+        "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', variables('frontEndName'))]": "Resource",
+        "displayName": "AppInsightsComponent"
+      },
+      "properties": {
+        "applicationId": "[variables('frontEndName')]"
       }
     }
   ]
