@@ -127,6 +127,22 @@
               "IIS Web Application Name": "[variables('apiName')]"
             }
           }
+        },
+        {
+          "name": "appsettings",
+          "type": "config",
+          "apiVersion": "2015-08-01",
+          "dependsOn": [
+            "[resourceId('Microsoft.Web/sites', variables('apiName'))]",
+            "[concat('Microsoft.Web/Sites/', variables('apiName'), '/Extensions/MSDeploy')]"
+          ],
+          "tags": {
+            "displayName": "App Setting API"
+          },
+          "properties": {
+            "key1": "value1",
+            "key2": "value2"
+          }
         }
       ]
     },
@@ -172,7 +188,8 @@
           "type": "config",
           "apiVersion": "2015-08-01",
           "dependsOn": [
-            "[resourceId('Microsoft.Web/sites', variables('frontEndName'))]"
+            "[resourceId('Microsoft.Web/sites', variables('frontEndName'))]",
+            "[concat('Microsoft.Web/Sites/', variables('frontEndName'), '/Extensions/MSDeploy')]"
           ],
           "tags": {
             "displayName": "App Settings Frontend"
