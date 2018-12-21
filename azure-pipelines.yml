@@ -55,10 +55,10 @@ steps:
     modifyOutputPath: true
 
 - task: CopyFiles@2
-  displayName: CopyArmToOutput
+  displayName: 'Copy ARM Template to: $(Build.ArtifactStagingDirectory)'
   inputs:
-    #sourceFolder: # Optional
-    contents: '**\ARMTemplate\**' 
+    sourceFolder: '$(Build.SourcesDirectory)\ARMTemplate'
+    contents: '**\*' 
     targetFolder: $(Build.ArtifactStagingDirectory)/ARM
     #cleanTargetFolder: false # Optional
     overWrite: true# Optional
