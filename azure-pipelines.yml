@@ -59,7 +59,7 @@ steps:
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)/ARMTemplate'
     contents: '**/*'
-    targetFolder: $(Build.ArtifactStagingDirectory)/ARM
+    targetFolder: $(Build.ArtifactStagingDirectory)
     #cleanTargetFolder: false # Optional
     overWrite: true# Optional
     #flattenFolders: false # Optional
