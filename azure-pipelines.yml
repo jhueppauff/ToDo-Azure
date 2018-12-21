@@ -36,6 +36,14 @@ steps:
     command: build
     arguments: '--configuration $(buildConfiguration)'
     
+# Compile
+- task: DotNetCoreCLI@2
+  displayName: CompileARM
+  inputs:
+    projects: '**/*.deployproj'
+    command: build
+    arguments: '--configuration $(buildConfiguration)'
+
 # Tests
 - task: DotNetCoreCLI@2
   displayName: Test

@@ -6,16 +6,16 @@
       "value": "todo-asp"
     },
     "API WebDeployPackageFolder": {
-      "value": "API"
+      "value": ""
     },
     "API WebDeployPackageFileName": {
-      "value": "package.zip"
+      "value": "API.zip"
     },
     "FrontEnd WebDeployPackageFolder": {
-      "value": "Frontend"
+      "value": ""
     },
     "FrontEnd WebDeployPackageFileName": {
-      "value": "package.zip"
+      "value": "Frontend.zip"
     },
     "ApplicationInsightLocation": {
       "value": "West Europe"
