@@ -58,7 +58,7 @@ steps:
   displayName: 'Copy ARM Template to: $(Build.ArtifactStagingDirectory)'
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)/ARMTemplate'
-    contents: **/*
+    contents: '**/*'
     targetFolder: $(Build.ArtifactStagingDirectory)/ARM
     #cleanTargetFolder: false # Optional
     overWrite: true# Optional
