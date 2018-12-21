@@ -59,7 +59,7 @@ steps:
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)/ARMTemplate'
     contents: | 
-    '**/*' 
+    **/*
     !.git/**/*
     targetFolder: $(Build.ArtifactStagingDirectory)/ARM
     #cleanTargetFolder: false # Optional
