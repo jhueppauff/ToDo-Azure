@@ -24,7 +24,7 @@ steps:
   inputs:
     projects: '**/*.csproj'
     command: restore
-    
+
 - task: richardfennellBM.BM-VSTS-Versioning-Task.Version-DotNetCoreAssemblies-Task.VersionDotNetCoreAssemblies@2
   displayName: 'Version .NET Core Assemblies'
 
@@ -43,7 +43,7 @@ steps:
     command: test
     projects: '**/*Test*/*.csproj'
     arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
-    
+
 - task: DotNetCoreCLI@2
   displayName: Publish
   inputs:
@@ -53,7 +53,7 @@ steps:
     arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
     zipAfterPublish: true
     modifyOutputPath: true
-   
+
 - task: CopyFiles@2
   displayName: CopyArmToOutput
   inputs:
