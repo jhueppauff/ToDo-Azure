@@ -58,7 +58,7 @@ steps:
   displayName: CopyArmToOutput
   inputs:
     #sourceFolder: # Optional
-    contents: 'ARMTemplate\**' 
+    contents: '**\ARMTemplate\**' 
     targetFolder: $(Build.ArtifactStagingDirectory)/ARM
     #cleanTargetFolder: false # Optional
     overWrite: true# Optional
