@@ -30,7 +30,7 @@ namespace UnitTest
         [TestMethod]
         public async Task Value_Action_Should_Return_Value()
         {
-            var response = await this.api.CreateRequest("/api/v1/values").GetAsync();
+            var response = await this.api.CreateRequest("/api/v1/ToDo").GetAsync();
             var data = await response.Content.ReadAsStringAsync();
 
             data.Should().NotBeNullOrWhiteSpace();
