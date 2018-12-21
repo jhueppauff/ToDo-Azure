@@ -54,8 +54,8 @@ steps:
     zipAfterPublish: true
     modifyOutputPath: true
    
- task: CopyFiles@2
- displayName: CopyArmToOutput
+- task: CopyFiles@2
+  displayName: CopyArmToOutput
   inputs:
     #sourceFolder: # Optional
     contents: 'ARMTemplate\**' 
