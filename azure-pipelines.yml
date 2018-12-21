@@ -35,14 +35,6 @@ steps:
     projects: '**/*.csproj'
     command: build
     arguments: '--configuration $(buildConfiguration)'
-    
-# Compile
-- task: DotNetCoreCLI@2
-  displayName: CompileARM
-  inputs:
-    projects: '**/*.deployproj'
-    command: build
-    arguments: '--configuration $(buildConfiguration)'
 
 # Tests
 - task: DotNetCoreCLI@2
@@ -61,16 +53,16 @@ steps:
     arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
     zipAfterPublish: true
     modifyOutputPath: true
-    
-- task: DotNetCoreCLI@2
-  displayName: PublishArm
+   
+ task: CopyFiles@2
+ displayName: CopyArmToOutput
   inputs:
-    projects: '**/*.deployproj'
-    command: publish
-    publishWebProjects: false
-    arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
-    zipAfterPublish: false
-    modifyOutputPath: true
+    #sourceFolder: # Optional
+    contents: 'ARMTemplate\**' 
+    targetFolder: $(Build.ArtifactStagingDirectory)/ARM
+    #cleanTargetFolder: false # Optional
+    overWrite: true# Optional
+    #flattenFolders: false # Optional
 
 # Publish the artifacts
 - task: PublishBuildArtifacts@1
