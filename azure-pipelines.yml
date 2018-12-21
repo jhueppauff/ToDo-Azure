@@ -62,6 +62,16 @@ steps:
     zipAfterPublish: true
     modifyOutputPath: true
     
+    - task: DotNetCoreCLI@2
+  displayName: PublishArm
+  inputs:
+    projects: '**/*.deployproj'
+    command: publish
+    publishWebProjects: false
+    arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+    zipAfterPublish: true
+    modifyOutputPath: true
+
 # Publish the artifacts
 - task: PublishBuildArtifacts@1
   displayName: Publish Artifacts
