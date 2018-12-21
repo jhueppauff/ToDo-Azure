@@ -62,7 +62,7 @@ steps:
     zipAfterPublish: true
     modifyOutputPath: true
     
-    - task: DotNetCoreCLI@2
+- task: DotNetCoreCLI@2
   displayName: PublishArm
   inputs:
     projects: '**/*.deployproj'
